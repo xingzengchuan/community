@@ -1,15 +1,13 @@
 ## Q&A community
 
 ## 资料
-https://spring.io/guides
-<<<<<<< HEAD
+[spring 文档](https://spring.io/)
 
-https://spring.io/guides/gs/serving-web-content/
-
-=======
-https://spring.io/guides/gs/serving-web-content/
->>>>>>> 412a5509ac5c67fd8db9c28601380d48d270a59a
-https://elasticsearch.cn/explore
-
+[spring web](http://spring.io/guides/gs/serving-web-content/)
+[es](https://elasticsearch.cn/explore)
+[git_deploy_key](http://developer.github.com/v3/guides/managing-deploy-keys/#deploy-keys)
+[gitub_oauth](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)
+[bootstrap](http://v3.bootcss.com/getting-started)
 ## 工具
-https://git-scm.com/download
+[git](https://git-scm.com/download)
+[visual_Paradigm](http://www.visual-paradigm.com)
