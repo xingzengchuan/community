@@ -4,6 +4,7 @@ import answer.question.community.dto.PaginationDTO;
 import answer.question.community.dto.QuestionDTO;
 import answer.question.community.exception.CustomizeErrorCode;
 import answer.question.community.exception.CustomizeException;
+import answer.question.community.mapper.QuestionExtMapper;
 import answer.question.community.mapper.QuestionMapper;
 import answer.question.community.mapper.UserMapper;
 import answer.question.community.model.Question;
@@ -22,6 +23,9 @@ import java.util.List;
 public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
+
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
 
     @Autowired
     private UserMapper userMapper;
@@ -163,12 +167,9 @@ public class QuestionService {
     }
 
     public void incView(Integer id) {
-        Question question = questionMapper.selectByPrimaryKey(id);
-        Question updateQuestion = new Question();
-        updateQuestion.setViewCount(question.getViewCount()+1);
-        QuestionExample questionExample = new QuestionExample();
-        questionExample.createCriteria()
-                .andIdEqualTo(id);
-        questionMapper.updateByExampleSelective(updateQuestion, questionExample);
+        Question question = new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }
