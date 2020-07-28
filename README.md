@@ -9,10 +9,12 @@
 [gitub_oauth](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/)
 [bootstrap](http://v3.bootcss.com/getting-started)
 [spring boot](https://docs.spring.io/spring-boot/docs/2.0.0.RC1/reference/htmlsingle/#boot-features-embedded-database-support)
+[Thymeleaf](https://www.thymeleaf.org/documentation.html
+[Spring MVC](https://docs.spring.io/spring/docs/5.0.3.RELEASE/spring-framework-reference/web.html#mvc)
 ## 工具
 [git](https://git-scm.com/download)
 [visual_Paradigm](http://www.visual-paradigm.com)
-
+[lombok](https://projectlombok.org/(自动生成get/set))
 ## 脚本
 '''sql
 CREATE TABLE USER
@@ -24,6 +26,10 @@ CREATE TABLE USER
   GMT_CREATE   BIGINT,
   GMT_MODIFIED BIGINT
 );
-
+'''
+bash:
+mvn flyway:migrate
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+'''
 
 '''
