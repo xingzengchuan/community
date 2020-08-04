@@ -27,10 +27,13 @@ public class IndexController {
     public String index(HttpServletRequest request,
                         Model model,
                         @RequestParam(name = "page", defaultValue = "1") Integer page,
-                        @RequestParam(name = "size", defaultValue = "5") Integer size
+                        @RequestParam(name = "size", defaultValue = "5") Integer size,
+                        @RequestParam(name = "search",required = false) String search //制作搜索功能，传搜索参数
     ) {
-        PaginationDTO pagination = questionService.list(page, size);
+        PaginationDTO pagination = questionService.list(search,page, size);
         model.addAttribute("pagination", pagination);
+        //页面搜索有内容就把search传进去，避免点击页数时返回总的问题页面
+        model.addAttribute("search",search);
         return "index";
     }
 }

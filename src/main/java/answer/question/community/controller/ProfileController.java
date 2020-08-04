@@ -1,10 +1,12 @@
 package answer.question.community.controller;
 
 
+import answer.question.community.dto.NotificationDTO;
 import answer.question.community.dto.PaginationDTO;
 import answer.question.community.mapper.QuestionMapper;
 import answer.question.community.mapper.UserMapper;
 import answer.question.community.model.User;
+import answer.question.community.service.NotificationService;
 import answer.question.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 
 @Controller
@@ -25,6 +28,9 @@ public class ProfileController {
 
     @Autowired
     private QuestionService questionService;
+
+    @Autowired
+    private NotificationService notificationService;
 
     //只接受get方式的请求
     @GetMapping("/profile/{action}") //动态切换路径
@@ -44,14 +50,15 @@ public class ProfileController {
             model.addAttribute("section", "questions");
             //右边：“我的问题”每一条数据
             model.addAttribute("sectionName", "我的提问");
+            PaginationDTO paginationDTO = questionService.list(user.getId(), page, size);
+            model.addAttribute("pagination", paginationDTO);
         } else if ("replies".contains(action)) {
+            PaginationDTO paginationDTO = notificationService.list(user.getId(), page, size);
             model.addAttribute("section", "replies");
+            model.addAttribute("pagination",paginationDTO);
+
             model.addAttribute("sectionName", "最新回复");
         }
-
-        //
-        PaginationDTO paginationDTO = questionService.list(user.getId(), page, size);
-        model.addAttribute("pagination", paginationDTO);
         return "profile";
     }
 }
